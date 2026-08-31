@@ -14,8 +14,8 @@ from app.core.config import settings
 engine = create_engine(
     settings.DATABASE_URL,
     pool_pre_ping=True,
-    pool_size=10,
-    max_overflow=20,
+    pool_size=5 if settings.is_production else 10,
+    max_overflow=5 if settings.is_production else 20,
 )
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)

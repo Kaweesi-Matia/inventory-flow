@@ -35,11 +35,13 @@
   }
 
   .card {
-    @apply bg-white rounded-2xl border border-slate-200/80 shadow-card;
+    @apply bg-white rounded-2xl border border-slate-200/80;
+    box-shadow: theme("boxShadow.card");
   }
 
   .table-card {
-    @apply bg-white rounded-2xl border border-slate-200/80 shadow-card overflow-x-auto;
+    @apply bg-white rounded-2xl border border-slate-200/80 overflow-x-auto;
+    box-shadow: theme("boxShadow.card");
   }
 
   .table-card table {
@@ -67,7 +69,12 @@
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold px-4 py-2.5 rounded-xl shadow-sm shadow-brand-600/20 transition-all disabled:opacity-50 disabled:pointer-events-none;
+    @apply inline-flex items-center justify-center gap-2 text-white text-sm font-semibold px-4 py-2.5 rounded-xl shadow-sm transition-all disabled:opacity-50 disabled:pointer-events-none;
+    background-color: theme("colors.brand.600");
+  }
+
+  .btn-primary:hover {
+    background-color: theme("colors.brand.700");
   }
 
   .btn-secondary {
@@ -79,7 +86,12 @@
   }
 
   .input {
-    @apply w-full bg-white border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-500 transition;
+    @apply w-full bg-white border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 shadow-sm focus:outline-none transition;
+  }
+
+  .input:focus {
+    border-color: theme("colors.brand.500");
+    box-shadow: 0 0 0 4px rgb(20 184 166 / 0.3);
   }
 
   .label {
@@ -87,7 +99,12 @@
   }
 
   .link-action {
-    @apply text-brand-700 hover:text-brand-600 text-xs font-semibold tracking-wide;
+    @apply text-xs font-semibold tracking-wide;
+    color: theme("colors.brand.700");
+  }
+
+  .link-action:hover {
+    color: theme("colors.brand.600");
   }
 
   .status-badge {
@@ -103,6 +120,7 @@
   }
 
   .nav-link-active {
-    @apply bg-brand-500/15 text-white shadow-inner;
+    @apply text-white shadow-inner;
+    background-color: rgb(20 184 166 / 0.15);
   }
 }

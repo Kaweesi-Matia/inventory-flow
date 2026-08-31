@@ -1,14 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{js,jsx}"],
-  safelist: [
-    "bg-brand-500",
-    "bg-brand-600",
-    "bg-brand-700",
-    "text-brand-600",
-    "text-brand-700",
-    "shadow-card",
-  ],
   theme: {
     extend: {
       fontFamily: {

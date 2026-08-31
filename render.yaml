@@ -1,0 +1,42 @@
+# Render Blueprint — optional. You can also create the same services in the dashboard.
+# https://render.com/docs/blueprint-spec
+#
+# After first deploy, set SEED_ON_START=false so demo passwords are not reset
+# on every restart. Then add your Vercel URL to CORS_ORIGINS.
+
+databases:
+  - name: supplychainx-db
+    plan: free
+    databaseName: supplychainx
+    user: supplychainx
+
+services:
+  - type: web
+    name: supplychainx-api
+    runtime: python
+    plan: free
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: bash start.sh
+    healthCheckPath: /api/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.8"
+      - key: DATABASE_URL
+        fromDatabase:
+          name: supplychainx-db
+          property: connectionString
+      - key: JWT_SECRET_KEY
+        generateValue: true
+      - key: ENVIRONMENT
+        value: production
+      - key: CORS_ORIGINS
+        value: https://localhost
+      - key: CORS_ORIGIN_REGEX
+        value: https://.*\.vercel\.app
+      - key: SEED_ON_START
+        value: "true"
+      - key: ACCESS_TOKEN_EXPIRE_MINUTES
+        value: "60"
+      - key: JWT_ALGORITHM
+        value: HS256
